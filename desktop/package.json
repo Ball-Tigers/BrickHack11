@@ -21,10 +21,12 @@
   },
   "dependencies": {
     "@tabler/icons-react": "^3.30.0",
+    "@tailwindcss/vite": "^4.0.8",
     "app-root-path": "^3.1.0",
     "electron-log": "^5.3.0",
     "sequelize": "^6.37.5",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "vite": "^6.1.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -33,12 +35,14 @@
     "@types/node": "^22.13.5",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "autoprefixer": "^10.4.20",
     "electron": "^34.2.0",
     "electron-builder": "^25.1.8",
     "eslint": "^9",
     "eslint-config-next": "15.1.7",
     "next": "^15.1.7",
     "postcss": "^8",
+    "postcss-loader": "^8.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "rimraf": "^6.0.1",

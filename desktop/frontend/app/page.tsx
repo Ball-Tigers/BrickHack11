@@ -1,9 +1,10 @@
+import '../public/App.css'
 import Link from "next/link";
 
 export default function DesktopHome() {
     return (
         <div>
-            <h1>DesktopHome</h1>
+            <h1>Desktop Home</h1>
             <p>Button to go to upload</p>
             <Link href='/user_upload_file'>Upload</Link>
             <br />
@@ -12,4 +13,4 @@ export default function DesktopHome() {
             <Link href='/user_download_file'></Link>
         </div>
     )
-}   
+}
