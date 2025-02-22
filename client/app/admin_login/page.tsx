@@ -1,3 +1,4 @@
+'as client'
 import { auth0 } from "@/lib/auth0"
 
 export default async function Home() {
@@ -6,8 +7,9 @@ export default async function Home() {
   if (!session) {
     return (
       <main>
-        <a href="/auth/login?screen_hint=signup">Sign up</a>
-        <a href="/auth/login">Log in</a>
+        <a href="/auth/login?screen_hint=signup"><button>Sign up</button></a>
+        <br></br>
+        <a href="/auth/login"><button>Log in</button></a>
       </main>
     )
   }
