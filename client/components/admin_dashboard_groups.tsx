@@ -18,6 +18,7 @@ export default function AdminGroups({groupData}: Props) {
             </div>
             
             {
+                //https://www.heroui.com/docs/components/accordion
                 <Accordion variant="shadow">
                 {groupData.map((item) => {
                     return (
