@@ -1,4 +1,5 @@
 const express = require('express');
+const invite = require('../routes/invite');
 const router = express.Router();
 const { parseOrgId } = require('../middleware/auth0');
 const { createGroup, getGroups } = require('../services/group');
@@ -15,5 +16,7 @@ router.get('/', parseOrgId, async (req, res) => {
         res.send(JSON.stringify(result));
     })
 });
+
+router.use('/invite', invite);
 
 module.exports = router;
