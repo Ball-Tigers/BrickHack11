@@ -11,8 +11,11 @@
   "dependencies": {
     "@auth0/nextjs-auth0": "^4.0.2",
     "brick-hack-11": "file:",
+    "client": "^0.0.1",
+    "cookies": "^0.9.1",
     "dotenv": "^16.4.7",
-    "next": "15.1.7",
+    "next": "^15.1.7",
+    "next-client-cookies": "^2.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
