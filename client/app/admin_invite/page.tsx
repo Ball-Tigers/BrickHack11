@@ -1,5 +1,6 @@
 'use client'
 import Link from "next/link";
+import AdminInviteHook from '../../components/admin_invite_hook'
 import { useSearchParams } from "next/navigation";
 
 export default function Invite(){
@@ -13,6 +14,7 @@ export default function Invite(){
                 <div>
                     {inviteCode}
                 </div>
+                <AdminInviteHook />
                 <Link
                     href="/"
                     className='button'

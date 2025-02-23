@@ -31,6 +31,6 @@ export default function AdminInviteHook(inviteCode:string) {
     }
 
     return (
-        <> {promise} </>
+        <p> {promise} </p>
     )
 }
