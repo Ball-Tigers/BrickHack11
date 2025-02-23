@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { uploadFile, downloadFile } = require('../services/file');
+const { uploadFile, downloadFile, getFile } = require('../services/file');
 
 router.post('/upload', (req, res) => {
     const { orgId, groupName } = req.body;
@@ -25,5 +25,13 @@ router.get('/download', (req, res) => {
         res.status(result.code).send(result);
     });
 });
+
+router.get('/', (req, res) => {
+    const fileKey = req.query.fileKey;
+    getFile(fileKey).then(result => {
+        console.log(result);
+        res.status(result.code).send(JSON.stringify(result));
+    });
+}); 
 
 module.exports = router;

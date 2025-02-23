@@ -64,6 +64,16 @@ async function downloadFile(fileKey, ipAddress, macAddress) {
     return awsResult;
 }
 
+async function getFile(fileKey) {
+    const file = await database().collection('files').findOne({
+        _id: fileKey
+    });
+    if(file === null) {
+        return { code: 404, message: 'File not found' };
+    }
+    return { code: 200, fileName: file.fileName };
+}
+
 async function validate(orgId, groupName, ipAddress, macAddress) {
     const organization = await database().collection('organizations').findOne({
         _id: orgId
@@ -89,5 +99,6 @@ async function validate(orgId, groupName, ipAddress, macAddress) {
 
 module.exports = {
     uploadFile: uploadFile,
-    downloadFile: downloadFile
+    downloadFile: downloadFile,
+    getFile: getFile
 }

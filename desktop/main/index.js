@@ -3,6 +3,7 @@ import serve from "electron-serve";
 import path from "path";
 import getMAC from "getmac";
 import fs from "fs";
+import os from "os";
 
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -108,7 +109,12 @@ ipcMain.handle('uploadFile', async (_event, data) => {
 });
 
 ipcMain.handle('downloadFile', async (_event, data) => {
-    const { filePath, fileKey } = data;
+    const { fileKey } = data;
+
+    const file = await fetch(`http://localhost:5000/api/file?fileKey=${fileKey}`).then(res => {
+        return res.json();
+    });
+    const filePath = path.join(os.homedir(), 'Downloads', file.fileName);
 
     const options = {
         headers: {
@@ -116,11 +122,17 @@ ipcMain.handle('downloadFile', async (_event, data) => {
         }
     }
 
-    return await fetch(`http://localhost:5000/api/file/download?fileKey=${fileKey}`, options).then(res => {
+    return await fetch(`http://localhost:5000/api/file/download?fileKey=${fileKey}`, options)
+    .then(res => res.blob()).then(blob => {
+        return blob.arrayBuffer()
+    }).then(arrBuffer => {
+        return Buffer.from(arrBuffer);
+    }).then(res => {
         console.log("Writing to " + filePath);
-        fs.writeFileSync(filePath, res);
+        fs.writeFileSync(filePath, res, 'binary');
         return true;
-    }).error(_ => {
+    }).catch(err => {
+        console.log(err);
         return false;
     });
 });
