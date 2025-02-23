@@ -8,10 +8,11 @@ import { auth0 } from "@/lib/auth0";
 import { createNewGroup } from "@/app/admin_dashboard/page";
 
 interface Props {
-    groupData: {name: string, devices: Array<{_id: string, orgId: string, groupName: string, name: string, macAddress: string}>}[]
+    groupData: {name: string, devices: Array<{_id: string, orgId: string, groupName: string, name: string, macAddress: string}>}[],
+    whiteList: string[]
 }
 
-export default function AdminClient({groupData}: Props) {
+export default function AdminClient({groupData, whiteList}: Props) {
     
     const [state, setState] = useState(0);
     const [textField, updateTextField] = useState("")
@@ -42,7 +43,7 @@ export default function AdminClient({groupData}: Props) {
 
             {state == 0 && <AdminGroups groupData={groupData}></AdminGroups>}
             {state == 1 && <AdminFiles></AdminFiles>}
-            {state == 2 && <AdminSettings></AdminSettings>}
+            {state == 2 && <AdminSettings whiteList={whiteList}></AdminSettings>}
         </>
     )
 }

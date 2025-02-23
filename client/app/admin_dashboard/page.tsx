@@ -3,20 +3,19 @@ import AdminClient from "@/components/admin_client";
 import { auth0 } from "@/lib/auth0";
 
 
-
 export default async function AdminDashboard() {
     
     const session = await auth0.getSession()
 
     let groupData: {name: string, devices: Array<{_id: string, orgId: string, groupName: string, name: string, macAddress: string}>}[] = []
     
-    postOrganizationData();
+    let whiteList = (await postOrganizationData()).whitelistedIPs;
 
     groupData = await getData()
 
     return (
         <>
-            <AdminClient groupData={groupData}></AdminClient>
+            <AdminClient groupData={groupData} whiteList={whiteList}></AdminClient>
         </>
     );
     
@@ -93,17 +92,12 @@ export async function getData() {
     return groupData;
 }
 
-
 export async function createNewGroup(name:string) {
-    console.log("Name:" + name)
     const session = await auth0.getSession()
     const url = 'http://localhost:5000/api/organization/group';
     const data = {
         name: name
     }
-
-    console.log(data)
-    console.log(JSON.stringify(data))
 
     const options = {
       method: 'POST',
@@ -127,3 +121,44 @@ export async function createNewGroup(name:string) {
       console.error('Error:', error);
     }
 }
+
+export async function modifyIPList(whiteList: string[], IP: string, remove: boolean = false) {
+    const session = await auth0.getSession()
+    const url = 'http://localhost:5000/api/organization';
+    if (!remove) {
+        whiteList.push(IP)
+    }
+    else {
+        whiteList.filter((item) => item != IP)
+    }
+    const data = {
+        whitelistedIPs: whiteList
+    }
+
+    const options = {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + session?.tokenSet.accessToken
+      },
+      body: JSON.stringify(data)
+    };
+
+    console.log(options.body)
+  
+    try {
+      const response = await fetch(url, options);
+      console.log(response)
+      if (!response.ok) {
+        const responseData = await response.json();
+        console.log('Error:', responseData);
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const responseData = await response.json();
+      console.log('Success:', responseData);
+      return responseData;
+    } catch (error) {
+      console.error('Error:', error);
+    }
+}
+

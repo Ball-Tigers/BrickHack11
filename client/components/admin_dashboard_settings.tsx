@@ -1,12 +1,14 @@
 'use client'
 import { ReactElement, ReactHTMLElement } from "react"
 import { useState } from "react"
+import { modifyIPList } from "@/app/admin_dashboard/page"
 
+interface Props {
+    whiteList: string[]
+}
 
-export default function AdminSettings() {
-    const [IPs, updateIPs] = useState(new Array<string>()) //TODO: get stored list
+export default function AdminSettings({ whiteList }: Props) {
     const [value, updateValue] = useState("")
-
 
     return (
         <div>
@@ -14,13 +16,13 @@ export default function AdminSettings() {
             <input type="text" defaultValue={"Default Name"}></input>
 
             <input type="text" onChange={(e) => updateValue(e.target.value)}></input>
-            <button onClick={() => {IPs.push(value); updateValue(""); console.log(IPs.toString())}}>Add IP</button>
+            <button onClick={async () => {console.log(await modifyIPList(whiteList, value))}}>Add IP</button>
 
             
             
             <p>Whitelisted IPs: </p>
             <ul>
-                {IPs.map((item) => {
+                {whiteList.map((item) => {
                     return (
                     <li key={item}>
                         <span>{item}</span>
