@@ -52,6 +52,7 @@ async function downloadFile(fileKey, ipAddress, macAddress) {
     }
 
     const valid = await validate(file.orgId, file.groupName, ipAddress, macAddress);
+    console.log(valid);
     if(!valid) {
         return { code: 403, message: 'Forbidden from downloading this file' };
     }
@@ -86,6 +87,7 @@ async function validate(orgId, groupName, ipAddress, macAddress) {
         let validMac = false;
         for(const device of devices) {
             if(device.macAddress === macAddress) {
+                console.log('matched with ' + device.macAddress + ', name = ' + device.name);
                 validMac = true;
                 break;
             }

@@ -130,6 +130,10 @@ ipcMain.handle('downloadFile', async (_event, data) => {
     }).then(arrBuffer => {
         return Buffer.from(arrBuffer);
     }).then(res => {
+        console.log(res);
+        if(res.byteLength === 0) {
+            return;
+        }
         console.log("Writing to " + filePath);
         fs.writeFileSync(filePath, res, 'binary');
         return true;

@@ -22,7 +22,7 @@ router.get('/download', (req, res) => {
             result.Body.pipe(res);
             return;
         }
-        res.status(result.code).send(result);
+        res.status(403).send();
     });
 });
 
