@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect, useState } from "react";
+
 declare global {
     interface Window {
         electronAPI: any;
@@ -7,30 +9,57 @@ declare global {
 }
 
 export default function UserUploadFile() {
+    const [filePath, setFilePath] = useState(null);
+    const [organizations, setOrganizations] = useState([]);
+    const [selectedOrg, setSelectedOrg] = useState(null);
+    const [selectedGroup, setSelectedGroup] = useState(null);
+    
+    useEffect(() => {
+        window.electronAPI.getOrganizations().then(res => {
+            setOrganizations(res);
+            if(res.length > 0) {
+                setSelectedOrg(res[0].orgId);
+                if(res[0].groups.length > 0) {
+                    setSelectedGroup(res[0].groups[0]);
+                }
+            }
+        });
+    }, [])
+
     const chooseFile = async () => {
-        const result = await window.electronAPI.chooseFile();
-        alert(result.filePaths[0]);
+        setFilePath(await window.electronAPI.chooseFile());
     };
 
-    const onDragOver = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+    const uploadFile = async() => {
+        const fileKey = (await window.electronAPI.uploadFile({
+            filePath: filePath,
+            selectedOrg: selectedOrg,
+            selectedGroup: selectedGroup
+        })).fileKey;
+
+        alert(fileKey);
+        console.log(fileKey);
     };
 
-    const dropFile = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+    const onSelectOrganization = (event) => {
+        setSelectedOrg(event.target.value);
+        const groups = (organizations.find((org: any) => org.orgId == event.target.value) as any)?.groups;
+        if(groups && groups.length > 0) {
+            setSelectedGroup(groups[0].name);
+        } else {
+            setSelectedGroup(null);
+        }
+    }
 
-        if(!e.dataTransfer.files) return;
-        const file = e.dataTransfer.files[0];
-        if(file.type !== "") return;
-    };
+    const onSelectGroup = (event) => {
+        setSelectedGroup(event.target.value);
+    }
 
     return (
         <div className='flex flex-row w-full h-full'>
             <div className='w-1/2 flex flex-col items-center justify-center gap-8'>
                 <div className="flex flex-col justify-center items-center min-w-[20%] w-[200px] max-w-[40%] ">
-                    <div onClick={chooseFile} onDragOver={onDragOver} onDrop={dropFile} className='p-16 gap-2 flex justify-center items-center aspect-square border-dashed border-4 border-accent rounded-4xl'>
+                    <div onClick={chooseFile} className='p-16 gap-2 flex justify-center items-center aspect-square border-dashed border-4 border-accent rounded-4xl'>
                         <img
                             src='document.png'
                             className=''
@@ -40,21 +69,21 @@ export default function UserUploadFile() {
                 </div>
                 <div className="flex flex-col gap-2 w-[300px]">
                     <p className="text-secondary text-2xl">Choose an Organization:</p>
-                    <select className="bg-secondary w-full p-4">
-                        <option>Option1</option>
-                        <option>Option2</option>
-                        <option>Option3</option>
+                    <select className="bg-secondary w-full p-4" onChange={onSelectOrganization}>
+                        {organizations.map((org: any, index) => {
+                            return <option key={index} value={org.orgId}>{org.orgId}</option>
+                        })}
                     </select>
                 </div>
                 <div className="flex flex-col gap-2 w-[300px]">
                     <p className="text-secondary text-2xl">Choose Group to Share to:</p>
-                    <select className="bg-secondary w-full p-4">
-                        <option>Option1</option>
-                        <option>Option2</option>
-                        <option>Option3</option>
+                    <select className="bg-secondary w-full p-4" onChange={onSelectGroup}>
+                        {selectedOrg &&
+                            (organizations.find((org: any) => org.orgId === selectedOrg) as any)?.groups.map(group => <option>{group.name}</option>)
+                        }
                     </select>
                 </div>
-                <div className="button">
+                <div onClick={uploadFile} className="button">
                     Upload!
                 </div>
             </div>
@@ -64,11 +93,6 @@ export default function UserUploadFile() {
                 />
                 <p className='text-7xl w-1 flex-wrap text-secondary flex justify-center text-center'>Upload</p>
             </div>
-            {/* <h1>User Upload File</h1>
-            <p>Get all of the organizations the current IP/MAC is associated with</p>
-            <p>Select which organization you are uploading to</p>
-            <p>Upload your file (take into account max file size)</p>
-            <p>Get shareable link, and share the link</p> */}
         </div>
     );
 }

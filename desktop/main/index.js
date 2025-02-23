@@ -1,6 +1,8 @@
 import { app, BrowserWindow, ipcMain, dialog } from "electron";
 import serve from "electron-serve";
 import path from "path";
+import getMAC from "getmac";
+import fs from "fs";
 
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -52,18 +54,11 @@ app.on("ready", () => {
     createWindow();
 });
 
-app.on("open-url", (e, data) => {
-    e.preventDefault();
-
-    console.log(data);
-});
-
 app.on("second-instance", (e, argv) => {
     let uri = null;
     for(const arg of argv) {
         if(arg.startsWith('jafe')) {
             uri = arg.split("jafe://")[1].replace(/\//g, '');
-            console.log(uri)
             break;
         }
     }
@@ -77,7 +72,37 @@ app.on("window-all-closed", () => {
 });
 
 ipcMain.handle('chooseFile', async (event) => {
-    return await dialog.showOpenDialog(BrowserWindow.fromWebContents(event.sender), {
+    return (await dialog.showOpenDialog(BrowserWindow.fromWebContents(event.sender), {
         properties: ['openFile']
-    });
+    })).filePaths[0];
+});
+
+ipcMain.handle('getOrganizations', async () => {
+    const options = {
+        headers: {
+            Accept: 'application/json',
+            MAC: getMAC()
+        }
+    };
+
+    return await (fetch('http://localhost:5000/api/organization', options).then(res => {
+        return res.json()
+    }));;
+});
+
+ipcMain.handle('uploadFile', async (_event, data) => {
+    const { filePath, selectedOrg, selectedGroup } = data;
+
+    const form = new FormData();
+    form.append('orgId', selectedOrg);
+    form.append('groupName', selectedGroup);
+    form.append('file', new Blob([fs.readFileSync(filePath)]), path.basename(filePath));
+
+    return await fetch('http://localhost:5000/api/file/upload', {
+        method: 'POST',
+        headers: {
+            MAC: getMAC()
+        },
+        body: form
+    }).then(res => res.json());
 });
