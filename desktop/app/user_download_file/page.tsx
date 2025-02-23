@@ -12,9 +12,8 @@ export default function UserDownloadFile() {
     const [fileKey, setFileKey] = useState(null);
 
     const downloadFile = () => {
-        console.log('downloading...');
         window.electronAPI.downloadFile("~/Downloads/file.dmp", fileKey).then(success => {
-            console.log(success);
+            alert(success);
         });
     };
 
@@ -24,12 +23,10 @@ export default function UserDownloadFile() {
 
     return (
         <div className="flex w-full h-full content-normal">
-            <div className='"h-screen flex items-center justify-center"'>
+            <div className='w-1/2 flex flex-col gap-4 items-center justify-center'>
                 <h1 className="custom-header-strong">Download File by Key</h1>
-                <div className="flex flex-row justify-content space-x-5 items-align">
-                    <input onChange={onFileKeyChange} className="text-xl border-2xl text-white bg-lightgray w-min-120" placeholder="Insert file key here"/>
-                    <button className="button-invite shadow-md ">Download</button>
-                </div>
+                <input onChange={onFileKeyChange} className="text-xl border-2xl bg-primary text-background bg-lightgray p-4 w-[500px] max-w-[70%]" placeholder="Insert file key here"/>
+                <button className="button-invite shadow-md ">Download</button>
             </div>
             <div className='w-1/2 bg-accent home-clip-right flex flex-col justify-center items-center'>
                 <img 
