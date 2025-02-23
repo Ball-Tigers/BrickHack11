@@ -1,12 +1,8 @@
-'use client'
+"use client";
 
 import Link from "next/link";
 
 export default function DesktopHome() {
-    function handleLink() {
-        alert('click')
-    }
-
     return (
         <div className='flex flex-row w-full h-full'>
             <div className='w-1/2 bg-accent home-clip-left'>
@@ -40,7 +36,7 @@ export default function DesktopHome() {
             </div>
             <button 
                 className='absolute bottom-0 right-0 cursor-pointer mx-2 hidden'
-                onClick={handleLink}
+                //onClick={handleLink}
             >
                 Are you an Organization Admin? Click here.
             </button>
