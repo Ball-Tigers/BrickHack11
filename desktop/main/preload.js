@@ -1,7 +1,9 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld('electronAPI', {
-    chooseFile: async () => await ipcRenderer.invoke('chooseFile')
+    chooseFile: async () => await ipcRenderer.invoke('chooseFile'),
+    getOrganizations: () => ipcRenderer.invoke('getOrganizations'),
+    uploadFile: async (data) => await ipcRenderer.invoke('uploadFile', data)
 });
 
 window.addEventListener('DOMContentLoaded', () => {
