@@ -1,31 +1,34 @@
 'use client'
 import Link from "next/link";
+import AdminInviteHook from '../../components/admin_invite_hook'
 import { useSearchParams } from "next/navigation";
-
 
 export default function Invite(){
     const searchParam = useSearchParams()
-    const groupID = searchParam.get("groupName")
-    return (
-        
+    const inviteCode = searchParam.get("inviteCode")
 
-        <div className="flex flex-col justify-center items-center min-h-screen ">
-            <div className="rounded bg-background py-30 px-20 custom-drop-shadow fixed absolute min-h-60  ">
-            <h1 className="text-[48px] text-xl text-center text-balance max-w-[600] text-white "> LOGO </h1>
-                    <hr></hr>
-                    <br></br>
-                    <br></br>
-                <div className="flex flex-col align-content-center justify-center bg-lightgray text-wrap max-w-110">
-                    
-                    <h1 className="custom-header-strong text-balance text-wrap max-w-[600] break-words text-center">{groupID}</h1>
+    return (
+        <div className='flex flex-row w-full h-full'>
+            <div className='w-1/2 flex flex-col justify-center items-center'>
+                <p>Group Invite Code</p>
+                <div>
+                    {inviteCode}
                 </div>
-                <br></br>
-                <br></br>
-        
-                <div className="flex flex-col justify-center items-center p-10">
-                    <button className="button-invite p-10">Open JAFE</button>
+                <AdminInviteHook />
+                <Link
+                    href="/"
+                    className='button'
+                >
+                    Open My Fat Ass
+                </Link>
+            </div>
+            <div className='w-1/2 bg-accent home-clip-right flex flex-col justify-center items-center'>
+                <div className='flex justify-end w-[300px] max-w-[50%]'>
+                    <img 
+                        src='jafe_small.png'
+                        alt='Jafe Logo'
+                    />
                 </div>
-                <h1 className="text-24 absolute bottom-0 right-0 m-4"><Link className="text-white text-md" href="/">Are you an admin?</Link></h1>
             </div>
         </div>
     )
