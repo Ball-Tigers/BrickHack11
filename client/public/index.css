@@ -45,12 +45,12 @@
     color: azure;
     cursor: pointer;
     border: solid var(--color-accent) 4px;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     border-radius: 24px;
-
+    row-gap: 2.5%;
     transition: 0.3s;
 }
 
