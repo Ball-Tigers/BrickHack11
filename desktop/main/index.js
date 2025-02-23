@@ -20,13 +20,15 @@ const createWindow = () => {
     }
   });
 
+  win.setMenu(null)
+
   if (app.isPackaged) {
     appServe(win).then(() => {
       win.loadURL("app://-");
     });
   } else {
     win.loadURL("http://localhost:3000");
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
     win.webContents.on("did-fail-load", (e, code, desc) => {
       win.webContents.reloadIgnoringCache();
     });

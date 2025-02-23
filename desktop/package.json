@@ -10,7 +10,7 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently -n \"NEXT,ELECTRON\" -c \"yellow,blue\" --kill-others \"next dev\" \"electron .\"",
-    "prebuild": "rimraf out && rimraf main && rimraf /.next && rimraf out",
+    "prebuild": "rimraf out && rimraf dist && rimraf /.next && rimraf out",
     "build": "next build && electron-builder",
     "postinstall": "electron-builder install-app-deps"
   },
