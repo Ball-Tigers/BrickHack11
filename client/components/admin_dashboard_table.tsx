@@ -17,7 +17,7 @@ export default function AdminDashboardTable({userData}: Props) {
                             <span>{item.id}</span>
                             <span>{item.mac}</span>
                             <div>
-                                <button onClick={}>remove</button>
+                                <button>remove</button>
                                 <button>erm (jaysen reference)</button>
                             </div>
                         </li>
