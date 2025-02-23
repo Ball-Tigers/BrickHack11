@@ -21,7 +21,7 @@ export default function AdminDashboardTable({userData}: Props) {
                             <span>{item.name}</span>
                             <span>{item.macAddress}</span>
                             <div>
-                                <button>remove</button>
+                                <button className="text-[#ff0000] underline cursor-pointer">Remove</button>
                             </div>
                         </li>
                     })
