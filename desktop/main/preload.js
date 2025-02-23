@@ -1,10 +1,11 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
-contextBridge.exposeInMainWorld("electronAPI", {
-    on: (channel, callback) => {
-        ipcRenderer.on(channel, callback);
-    },
-    send: (channel, args) => {
-        ipcRenderer.send(channel, args);
-    }
+contextBridge.exposeInMainWorld('electronAPI', {
+    chooseFile: async () => await ipcRenderer.invoke('chooseFile')
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+    ipcRenderer.on('update-uri', (_event, value) => {
+        window.location.href = window.location.origin + "/user_join_group?inviteCode=" + value;
+    });
 });
