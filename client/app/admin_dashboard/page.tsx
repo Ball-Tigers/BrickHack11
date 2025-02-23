@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function AdminDashboard() {
     return (
         <div>
@@ -8,6 +10,7 @@ export default function AdminDashboard() {
             <p>Add/Remove Groups, IP, MAC</p>
             <p>List of all active files</p>
             <p>Log out button</p>
+            <Link href="/auth/logout">Log out!</Link>
         </div>
     )
 }
