@@ -1,9 +1,10 @@
 'use client'
 import AdminGroups from "@/components/admin_dashboard_groups";
 import AdminSettings from "@/components/admin_dashboard_settings";
+import Link from "next/link";
 import { useState } from "react";
 
-var orgName: string = "Your Organization Name"
+const orgName: string = "Your Organization Name"
 
 export default function AdminDashboard() {
     const [state, setState] = useState(0);
@@ -28,6 +29,8 @@ export default function AdminDashboard() {
             <button onClick={() => setState(0)}>Groups</button>
             <button onClick={() => setState(1)}>Files (Not yet implemented)</button>
             <button onClick={() => setState(2)}>Settings</button>
+            <Link href="/auth/logout"><button>Logout!</button></Link>
+            
 
             {state == 0 && <AdminGroups></AdminGroups>}
             {state == 1 && <p>BlackCopWhiteSeaman.mov</p>}
