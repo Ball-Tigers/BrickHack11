@@ -103,10 +103,12 @@ export async function createNewGroup(name:string) {
     }
 
     console.log(data)
+    console.log(JSON.stringify(data))
 
     const options = {
       method: 'POST',
       headers: {
+        "Content-Type": "application/json",
         Authorization: "Bearer " + session?.tokenSet.accessToken
       },
       body: JSON.stringify(data)
