@@ -127,7 +127,7 @@ export async function modifyIPList(whiteList: string[], IP: string, remove: bool
     
   const split = IP.split('.');
   const casted = split.map((item) => parseInt(item))
-  let valid = casted.length == 4 && whiteList.find((item) => item == IP);
+  let valid = casted.length == 4 && (!whiteList.find((item) => item == IP));
   for (let number of casted) {
       if (number < 0 || number > 255) {
           valid = false;
