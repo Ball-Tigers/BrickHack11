@@ -27,3 +27,7 @@ export default function UserDownloadFile() {
         </div>
     )
 }
+
+const verifyAllowed = async () => {
+    
+}

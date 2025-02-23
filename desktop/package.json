@@ -21,6 +21,7 @@
     "concurrently": "^9.1.2",
     "electron-log": "^5.3.0",
     "electron-serve": "^2.1.1",
+    "getmac": "^6.6.0",
     "jafe": "file:",
     "sequelize": "^6.37.5",
     "sqlite3": "^5.1.7",
