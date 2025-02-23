@@ -120,3 +120,6 @@ ipcMain.handle('acceptGroup', async (_event, data) => {
         }),
     }).then(res => {return res.json()});
 })
+ipcMain.handle('downloadFile', async (_event, data) => {
+    
+});

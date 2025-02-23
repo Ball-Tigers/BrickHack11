@@ -5,15 +5,14 @@ export default function UserDownloadFile() {
     // const [hasAuth, setHasAuth] = useState(true)
 
     return (
-        <div className="flex flex-row w-full h-full">
-            <div className='w-1/2 flex justify-center items-center'>
-                {
-                    true ? (
-                        <a className='button'>Link is here</a>
-                    ) : (
-                        <div>hasNotAuth</div>
-                    )
-                }
+        <div className="flex w-full h-full content-normal">
+            
+            <div className='"h-screen flex items-center justify-center"'>
+                <h1 className="custom-header-strong">Download your file!</h1>
+                <div className="flex flex-row justify-content space-x-5 items-align">
+                    <input className="text-xl border-2xl text-white bg-lightgray w-min-120" placeholder="Place link code here!"></input>
+                    <button className="button-invite shadow-md ">Download</button>
+                </div>
             </div>
             <div className='w-1/2 bg-accent home-clip-right flex flex-col justify-center items-center'>
                 <img 
@@ -27,3 +26,4 @@ export default function UserDownloadFile() {
         </div>
     )
 }
+

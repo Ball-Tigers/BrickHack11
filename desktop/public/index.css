@@ -29,14 +29,31 @@
 .button {
     font-size: xx-large;
     color: var(--color-text);
+.button-invite {
+    font-size: xx-large;
+    color: azure;
     cursor: pointer;
     border: solid var(--color-accent) 4px;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     border-radius: 24px;
+    row-gap: 2.5%;
+    transition: 0.3s;
+}
 
+.button-invite {
+    font-size: xx-large;
+    color: azure;
+    cursor: pointer;
+    border: solid var(--color-accent) 4px;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 24px;
+    row-gap: 2.5%;
     transition: 0.3s;
 }
 
@@ -57,6 +74,20 @@
 .button:hover {
     background-color: var(--color-primary);
     color: var(--color-background)
+}
+
+.button-invite:hover {
+    background-color: var(--color-primary);
+    color: var(--color-background)
+}
+
+.custom-drop-shadow {
+    filter: drop-shadow(-28px 25px 36px #000000);
+}
+
+.custom-header-strong {
+    font-size: 48px;
+    color: azure;
 }
 
 .button-invite:hover {
