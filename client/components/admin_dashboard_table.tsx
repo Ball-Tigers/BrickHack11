@@ -17,7 +17,6 @@ export default function AdminDashboardTable({userData}: Props) {
                             <span>{item.macAddress}</span>
                             <div>
                                 <button>remove</button>
-                                <button>erm (jaysen reference)</button>
                             </div>
                         </li>
                     })

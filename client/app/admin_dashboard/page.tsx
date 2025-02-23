@@ -28,6 +28,7 @@ export async function postOrganizationData() {
     const options = {
       method: 'POST',
       headers: {
+        "Content-Type": "application/json",
         Authorization: "Bearer " + session?.tokenSet.accessToken
       },
       
@@ -175,3 +176,35 @@ export async function modifyIPList(whiteList: string[], IP: string, remove: bool
     }
 }
 
+export async function createInvite(group: string) {
+    const session = await auth0.getSession()
+    const url = 'http://localhost:5000/api/organization/group/invite';
+    const data = {
+        groupName: group
+    }
+
+    const options = {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + session?.tokenSet.accessToken
+      },
+      body: JSON.stringify(data)
+    };
+    
+    console.log(options.body)
+
+    try {
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        const responseData = await response.json();
+        //console.log('Error:', responseData);
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const responseData = await response.json();
+      console.log(responseData)
+      return responseData;
+    } catch (error) {
+      console.error('Error:', error);
+    }
+}
