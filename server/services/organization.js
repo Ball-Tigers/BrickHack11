@@ -8,14 +8,19 @@ async function upsertOrganization(orgId) {
         {
             $setOnInsert: {
                 _id: orgId,
-                whitelistedIPs: []
+                whitelistedIPs: ['::1']
             }
         }, 
         {
             upsert: true
         }
     );
-    return { code: 200, message: 'Upserted organization', orgId: orgId };
+
+    const organization = await database().collection('organizations').findOne({
+        _id: orgId
+    });
+
+    return { code: 200, message: 'Upserted organization', orgId: orgId, whitelistedIPs: organization.whitelistedIPs };
 }
 
 async function updateWhitelistedIPs(orgId, whitelistedIPs) {
