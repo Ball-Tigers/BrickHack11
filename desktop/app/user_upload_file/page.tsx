@@ -23,7 +23,7 @@ export default function UserUploadFile() {
             if(res.length > 0) {
                 setSelectedOrg(res[0].orgId);
                 if(res[0].groups.length > 0) {
-                    setSelectedGroup(res[0].groups[0]);
+                    setSelectedGroup(res[0].groups[0].name);
                 }
             }
         });
