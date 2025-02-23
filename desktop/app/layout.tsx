@@ -3,11 +3,11 @@ import '../public/index.css'
 
 export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
     return (
-        <html lang="en" className="w-full h-full">
-        <body className="w-full h-full flex grow bg-background">
+        <html lang="en" className="w-full h-full fancy-gradient flex justify-center items-center">
+        <body className="flex w-[calc(100%-4rem)] h-[calc(100%-4rem)] justify-center items-center bg-background rounded-2xl overflow-hidden">
             {children}
             <Link 
-                className='absolute bottom-0 left-0 m-4 bg-primary p-2 rounded-full'
+                className='absolute bottom-0 left-0 m-10 bg-primary p-2 rounded-full'
                 href='/'
             >
                 <img

@@ -5,18 +5,18 @@ import { auth0 } from "@/lib/auth0";
 
 export default async function AdminDashboard() {
     
-    const session = await auth0.getSession()
+
 
     let groupData: {name: string, devices: Array<{_id: string, orgId: string, groupName: string, name: string, macAddress: string}>}[] = []
     
-    let whiteList = (await postOrganizationData()).whitelistedIPs;
+    const whiteList = (await postOrganizationData()).whitelistedIPs;
 
     groupData = await getData()
 
     return (
-        <>
+        <div className="w-full h-full flex justify-start">
             <AdminClient groupData={groupData} whiteList={whiteList}></AdminClient>
-        </>
+        </div>
     );
     
 }
@@ -51,7 +51,7 @@ export async function getData() {
     const session = await auth0.getSession()
     const url = 'http://localhost:5000/api/organization/';
     let groups: Array<{name: string}>;
-    let groupData: {name: string, devices: Array<{_id: string, orgId: string, groupName: string, name: string, macAddress: string}>}[] = []
+    const groupData: {name: string, devices: Array<{_id: string, orgId: string, groupName: string, name: string, macAddress: string}>}[] = []
   
     const options = {
       method: 'GET',
@@ -124,7 +124,20 @@ export async function createNewGroup(name:string) {
 }
 
 export async function modifyIPList(whiteList: string[], IP: string, remove: boolean = false) {
-    const session = await auth0.getSession()
+    
+  const split = IP.split('.');
+  const casted = split.map((item) => parseInt(item))
+  let valid = casted.length == 4;
+  for (let number of casted) {
+      if (number < 0 || number > 255) {
+          valid = false;
+      }
+  }
+  if (!valid) {
+    return whiteList
+  }
+  
+  const session = await auth0.getSession()
     const url = 'http://localhost:5000/api/organization';
     if (!remove) {
         whiteList.push(IP)

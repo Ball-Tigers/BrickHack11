@@ -1,7 +1,6 @@
 /node_modules
-/frontend/out
-/frontend/.next
 /out
+/dist
 /.pnp
 .pnp.*
 .yarn/*

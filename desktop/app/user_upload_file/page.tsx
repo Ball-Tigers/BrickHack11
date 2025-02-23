@@ -31,8 +31,11 @@ export default function UserUploadFile() {
                     Upload!
                 </div>
             </div>
-            <div className='w-1/2 bg-accent home-clip-right flex justify-center items-center'>
-                <p className='text-7xl w-1 flex-wrap text-secondary flex justify-center text-center'>Upload File</p>
+            <div className='w-1/2 bg-accent home-clip-right flex flex-col justify-center items-center'>
+                <img 
+                    src='jafe_small.png'
+                />
+                <p className='text-7xl w-1 flex-wrap text-secondary flex justify-center text-center'>Upload</p>
             </div>
             {/* <h1>User Upload File</h1>
             <p>Get all of the organizations the current IP/MAC is associated with</p>
