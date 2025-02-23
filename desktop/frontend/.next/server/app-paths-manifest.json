@@ -1,0 +1,7 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/user_download_file/page": "app/user_download_file/page.js",
+  "/user_join_group/page": "app/user_join_group/page.js",
+  "/page": "app/page.js",
+  "/user_upload_file/page": "app/user_upload_file/page.js"
+}
