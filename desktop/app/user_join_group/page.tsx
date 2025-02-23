@@ -12,7 +12,7 @@ export default function UserJoinGroup() {
     }, []);
 
     return (
-        <div className='fancy-gradient'>    
+        <div className='fancy-gradient'>  
             <h1>User Join Group</h1>
             <p>Pretty or simple background</p>
             <p>Button to accept, brings to home page</p>
