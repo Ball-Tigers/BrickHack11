@@ -28,7 +28,8 @@ export default function Invite(){
                 <h1 className="text-24 absolute bottom-0 right-0 m-4"><Link className="text-white text-md" href="/">Are you an admin?</Link></h1>
             </div>
         </div>
-        
     )
 }
+
+
 
