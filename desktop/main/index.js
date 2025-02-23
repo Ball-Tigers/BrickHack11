@@ -108,5 +108,19 @@ ipcMain.handle('uploadFile', async (_event, data) => {
 });
 
 ipcMain.handle('downloadFile', async (_event, data) => {
-    
+    const { filePath, fileKey } = data;
+
+    const options = {
+        headers: {
+            MAC: getMAC()
+        }
+    }
+
+    return await fetch(`http://localhost:5000/api/file/download?fileKey=${fileKey}`, options).then(res => {
+        console.log("Writing to " + filePath);
+        fs.writeFileSync(filePath, res);
+        return true;
+    }).error(_ => {
+        return false;
+    });
 });
