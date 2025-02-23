@@ -1,25 +1,22 @@
 const express = require('express');
-const device = require('../routes/device');
+const invite = require('../routes/invite');
 const router = express.Router();
+const { parseOrgId } = require('../middleware/auth0');
 const { createGroup, getGroups } = require('../services/group');
 
-router.post('/', async (req, res) => {
-    // TODO: Read orgId from JWT
-    let orgId = "9820931209__219smmdskma";
+router.post('/', parseOrgId, async (req, res) => {
     const { name } = req.body;
-    createGroup(orgId, name).then(result => {
+    createGroup(req.orgId, name).then(result => {
         res.status(result.code).send(result);
     });
 });
 
-router.get('/', async (req, res) => {
-    // TODO: Read orgId from JWT
-    let orgId = "9820931209__219smmdskma";
-    getGroups(orgId).then(result => {
-        res.status(result.code).send(JSON.stringify(result));
+router.get('/', parseOrgId, async (req, res) => {
+    getGroups(req.orgId).then(result => {
+        res.send(JSON.stringify(result));
     })
 });
 
-router.use('/device', device);
+router.use('/invite', invite);
 
 module.exports = router;

@@ -6,17 +6,33 @@ async function upsertOrganization(orgId) {
             _id: orgId
         }, 
         {
-            $set: {
-                _id: orgId
+            $setOnInsert: {
+                _id: orgId,
+                whitelistedIPs: []
             }
         }, 
         {
             upsert: true
         }
     );
-    return { code: 200, message: "Upserted organization" };
+    return { code: 200, message: 'Upserted organization', orgId: orgId };
+}
+
+async function updateWhitelistedIPs(orgId, whitelistedIPs) {
+    await database().collection('organizations').updateOne(
+        {
+            _id: orgId
+        },
+        {
+            $set: {
+                whitelistedIPs: whitelistedIPs
+            }
+        }
+    );
+    return { code: 200, message: 'Updated whitelisted IPs' };
 }
 
 module.exports = {
-    upsertOrganization: upsertOrganization
+    upsertOrganization: upsertOrganization,
+    updateWhitelistedIPs: updateWhitelistedIPs
 };

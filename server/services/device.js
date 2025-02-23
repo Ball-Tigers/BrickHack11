@@ -1,10 +1,14 @@
 const { database } = require('../db/mongo');
 
-async function createDevice(orgId, groupName, name, macAddress) {
-    
-}
-
 async function getDevices(orgId, groupName) {
+    const group = await database().collection('groups').findOne({
+        orgId: orgId,
+        name: groupName
+    });
+    if(group === null) {
+        return { code: 400, message: 'A group with that name does not exist' };
+    }
+
     const cursor = await database().collection('devices').find({
         orgId: orgId,
         groupName: groupName
@@ -18,6 +22,5 @@ async function getDevices(orgId, groupName) {
 }
 
 module.exports = {
-    createDevice: createDevice,
     getDevices: getDevices
 }

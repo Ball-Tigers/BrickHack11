@@ -4,6 +4,7 @@ const app = express();
 require('dotenv').config();
 const organization = require('./routes/organization');
 const mongo = require('./db/mongo');
+const aws = require('./aws/s3');
 
 app.use(cors());
 app.use(express.json());
@@ -14,6 +15,7 @@ app.use('/api', router);
 
 const server = app.listen(5000, async () => {
     await mongo.connect();
+    aws.connect();
     console.log(`Listening on 5000...`);
 });
 
