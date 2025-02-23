@@ -35,7 +35,10 @@ export default function AdminGroups({groupData}: Props) {
                         }}>
                         <div className="title text-white flex">
                             <h2>{item.name}</h2>
-                            <div className="text-white p-[0.7em] bg-primary cursor-pointer rounded-[20px]" onClick={async (e) => {e.stopPropagation(); navigator.clipboard.writeText((await createInvite(item.name)).inviteCode)}}>Invite</div>
+                            <div className="text-white p-[0.7em] bg-primary cursor-pointer rounded-[20px]" onClick={async (e) => {
+                                e.stopPropagation(); 
+                                navigator.clipboard.writeText('http://localhost/admin_invite?inviteCode=' + (await createInvite(item.name)).inviteCode)
+                            }}>Invite</div>
 
                         </div>
                         <div className="content">

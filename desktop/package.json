@@ -23,6 +23,7 @@
     "electron-serve": "^2.1.1",
     "getmac": "^6.6.0",
     "jafe": "file:",
+    "os": "^0.1.2",
     "sequelize": "^6.37.5",
     "sqlite3": "^5.1.7",
     "tailwindcss": "^4.0.8"
