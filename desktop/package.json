@@ -1,29 +1,26 @@
 {
-  "name": "sc-next-electron",
-  "displayName": "Electronjs with Nextjs",
-  "version": "10.0.2",
-  "description": "Electronjs with Nextjs",
+  "name": "jafe",
+  "displayName": "JAFE",
+  "version": "1.0.0",
+  "description": "Just Another File Exchanger",
   "private": false,
   "license": "MIT",
-  "main": "dist/index.js",
-  "author": {
-    "name": "Saulo Costa",
-    "email": "saulotarsobc@gmail.com",
-    "url": "https://github.com/saulotarsobc"
-  },
+  "main": "main/index.js",
+  "author": "The Ball Tigers",
+  "type": "module",
   "scripts": {
-    "dev": "electron . --dev",
-    "prebuild": "rimraf out && rimraf dist && rimraf frontend/.next && rimraf frontend/out",
-    "build": "npm run build:frontend",
-    "build:frontend": "next build frontend",
-    "postinstall": "electron-builder install-app-deps",
-    "dist": "npm run build && npx electron-builder"
+    "dev": "concurrently -n \"NEXT,ELECTRON\" -c \"yellow,blue\" --kill-others \"next dev\" \"electron .\"",
+    "prebuild": "rimraf out && rimraf main && rimraf /.next && rimraf out",
+    "build": "next build && electron-builder",
+    "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
     "@tabler/icons-react": "^3.30.0",
     "@tailwindcss/postcss": "^4.0.8",
     "app-root-path": "^3.1.0",
+    "concurrently": "^9.1.2",
     "electron-log": "^5.3.0",
+    "electron-serve": "^2.1.1",
     "sequelize": "^6.37.5",
     "sqlite3": "^5.1.7",
     "tailwindcss": "^4.0.8"
