@@ -99,6 +99,8 @@ ipcMain.handle('uploadFile', async (_event, data) => {
     form.append('groupName', selectedGroup);
     form.append('file', new Blob([fs.readFileSync(filePath)]), path.basename(filePath));
 
+    console.log(form);
+
     return await fetch('http://localhost:5000/api/file/upload', {
         method: 'POST',
         headers: {
