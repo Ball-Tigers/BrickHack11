@@ -25,7 +25,7 @@ export default function AdminGroups({groupData}: Props) {
                 {groupData.map((item) => {
                     return (
 
-                    <div key={item.name} className="accordion !rounded-[10px] border-[3px] border-accent border-solid cursor-pointer" onClick={(e) => {
+                    <div key={item.name} className="accordion bg-background !rounded-[10px] border-[3px] border-accent border-solid cursor-pointer" onClick={(e) => {
                             let element = e.target as HTMLElement;
                             while (!element.classList.contains("accordion")) {
                                 if (element.parentElement != null)

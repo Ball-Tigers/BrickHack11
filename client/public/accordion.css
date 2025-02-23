@@ -1,8 +1,4 @@
-/* ACCORDION */
 
-:root {
-  --container-light-gray: #FFFFFF
-}
 
 .accordion {
     background-color: var(--container-light-gray);
