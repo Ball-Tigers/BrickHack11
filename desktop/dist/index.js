@@ -11,7 +11,7 @@ function createWindow() {
             nodeIntegration: false,
             contextIsolation: true,
             preload: (0, node_path_1.join)(__dirname, "preload.js"),
-            devTools: false,
+            // devTools: false,
         },
     });
     win.setMenu(null);
