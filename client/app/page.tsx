@@ -8,9 +8,9 @@ export default async function Home() {
   
   if (!session) {
     return (
-      <div className="">
+      <div className="flex flex-col justify-center items-center min-h-screen ">
         <main>
-          <a href="/auth/login?screen_hint=signup"><button>Sign up</button></a>
+          <a href="/auth/login?screen_hint=signup"><button >Sign up</button></a>
           <br></br>
           <a href="/auth/login"><button>Log in</button></a>
           <Link href="/admin_invite?groupName=fbewuibfuiewbufi">view invite</Link>
