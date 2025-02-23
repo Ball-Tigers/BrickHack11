@@ -1,7 +1,6 @@
 'use client';
 import AdminDashboardTable from "./admin_dashboard_table";
 import { useState } from "react";
-import { createInvite } from "@/app/admin_dashboard/page";
 
 
 interface Props {

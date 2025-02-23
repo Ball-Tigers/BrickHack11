@@ -10,13 +10,18 @@ interface Props {
 export default function AdminGroups({groupData}: Props) {
     const [textField, updateTextField] = useState("")
     return (
+
+        <>
         <div className="flex flex-col justify-between align-center">
+        
+                
+            
             <div className="p-15 h-full w-full justify-around space-x-10">
                 <input className=" bg-white border-white border-sm rounded text-[42px]"type="text" onChange={(e) => updateTextField(e.target.value)}></input>
                 <button className="button-invite"onClick={(async () => { await createNewGroup(textField); updateTextField("")})}>Add Group</button>
             </div>
             
-            {
+            {  
                 <ul>
                 {groupData.map((item) => {
                     return (
@@ -28,7 +33,8 @@ export default function AdminGroups({groupData}: Props) {
                 })}
                 </ul>
             }
-        </div>
+            </div>
+        </>
     )
     
 }
