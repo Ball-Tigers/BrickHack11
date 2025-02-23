@@ -1,3 +1,4 @@
+'use client'
 import { ReactElement, ReactHTMLElement } from "react"
 import { useState } from "react"
 

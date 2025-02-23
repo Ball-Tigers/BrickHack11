@@ -1,3 +1,5 @@
+'use client'
+
 interface SharedFile {
     shareCode: string
     file: string

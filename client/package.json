@@ -15,7 +15,6 @@
     "cookies": "^0.9.1",
     "dotenv": "^16.4.7",
     "next": "^15.1.7",
-    "next-client-cookies": "^2.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "vite": "^6.1.1"

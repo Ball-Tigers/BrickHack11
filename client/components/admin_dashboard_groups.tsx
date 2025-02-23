@@ -1,3 +1,4 @@
+'use client'
 import AdminPermissionGroup from "@/components/dashboard_permission_group";
 
 export default function AdminGroups() {
