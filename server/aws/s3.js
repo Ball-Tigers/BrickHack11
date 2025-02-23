@@ -1,19 +1,14 @@
-const AWS = require('aws-sdk');
+const { S3Client } = require('@aws-sdk/client-s3');
 
 let s3 = null;
 
 function connect() {
-    AWS.config.credentials = {
-        accessKeyId: process.env.AWS_ACCESS_KEY,
-        secretAccessKey: process.env.AWS_SECRET
-    }
-    s3 = new AWS.S3();
-    s3.listBuckets((err, data) => {
-        if(err) {
-            console.error(err);
-            return;
+    s3 = new S3Client({
+        region: process.env.AWS_REGION,
+        credentials: {
+            accessKeyId: process.env.AWS_ACCESS_KEY,
+            secretAccessKey: process.env.AWS_SECRET
         }
-        console.log(data);
     });
 }
 

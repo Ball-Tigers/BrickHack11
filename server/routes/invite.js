@@ -15,6 +15,6 @@ router.post('/accept', (req, res) => {
     acceptInvite(inviteCode, name, macAddress).then(result => {
         res.status(result.code).send(result);
     });
-})
+});
 
 module.exports = router;

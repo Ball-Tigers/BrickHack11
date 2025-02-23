@@ -11,7 +11,7 @@ async function createInvite(orgId, groupName) {
     }
 
     const inviteCode = crypto.randomBytes(32).toString('base64url');
-    const expiresAt = new Date(new Date().getTime() + (1000 /** 60 * 60*/));
+    const expiresAt = new Date(new Date().getTime() + (1000 * 60 * 60));
     await database().collection('invites').insertOne({
         orgId: orgId,
         groupName: groupName,
