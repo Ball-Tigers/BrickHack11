@@ -106,3 +106,7 @@ ipcMain.handle('uploadFile', async (_event, data) => {
         body: form
     }).then(res => res.json());
 });
+
+ipcMain.handle('downloadFile', async (_event, data) => {
+    
+});
