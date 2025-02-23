@@ -21,7 +21,7 @@ export default function AdminDashboardGroup({title, devices}: Props) {
             <div onClick={click}>
                 <h3>{title}</h3>
                 {
-                    toggle && <button onClick={async () => {await navigator.clipboard.writeText((await createInvite(title)).inviteCode)}}>Invite</button>
+                    toggle && <button onClick={async (e) => {e.stopPropagation(); await navigator.clipboard.writeText((await createInvite(title)).inviteCode)}}>Invite</button>
                 }
                 {
                     toggle && (<div className = "permission-group">
