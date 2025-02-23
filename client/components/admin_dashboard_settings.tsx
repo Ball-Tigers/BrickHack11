@@ -12,8 +12,10 @@ export default function AdminSettings({ whiteList }: Props) {
     return (
         <div className="flex flex-col justify-content align-content py-10">
             
-            <button onClick={async () => {console.log(await modifyIPList(whiteList, value));}}>Add IP</button>
+            
+            
             <input placeholder="255.255.255.255" type="text" className="bg-white border-white border-sm rounded text-[36px] "onChange={(e) => updateValue(e.target.value)}></input>
+            <button onClick={async () => {console.log(await modifyIPList(whiteList, value));}}>Add IP</button>
             
 
             
