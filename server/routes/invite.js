@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { parseOrgId } = require('../middleware/auth0');
-const { createInvite, acceptInvite } = require('../services/invite');
+const { createInvite, acceptInvite, getInvite } = require('../services/invite');
 
 router.post('/', parseOrgId, (req, res) => {
     const { groupName } = req.body;
@@ -13,6 +13,13 @@ router.post('/', parseOrgId, (req, res) => {
 router.post('/accept', (req, res) => {
     const { inviteCode, name, macAddress } = req.body;
     acceptInvite(inviteCode, name, macAddress).then(result => {
+        res.status(result.code).send(result);
+    });
+});
+
+router.get('/', (req, res) => {
+    const { inviteCode } = req.query;
+    getInvite(inviteCode).then(result => {
         res.status(result.code).send(result);
     });
 });

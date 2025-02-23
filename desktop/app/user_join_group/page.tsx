@@ -1,6 +1,16 @@
+'use client'
+
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 export default function UserJoinGroup() {
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+        alert(searchParams.get("inviteCode"));
+    }, []);
+
     return (
         <div className='fancy-gradient'>    
             <h1>User Join Group</h1>
