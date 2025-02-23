@@ -1,6 +1,7 @@
 'use client'
 import { createNewGroup } from "@/app/admin_dashboard/page";
 import AdminDashboardGroup from "@/components/dashboard_permission_group";
+import { Accordion, AccordionItem } from "@heroui/accordion";
 import { useState } from "react";
 
 interface Props {
@@ -17,16 +18,16 @@ export default function AdminGroups({groupData}: Props) {
             </div>
             
             {
-                <ul>
+                <Accordion variant="shadow">
                 {groupData.map((item) => {
                     return (
 
-                    <li key={item.name} className="strong-content-header">
+                    <AccordionItem key={item.name} aria-label="Accordion 1" title={item.name}>
                         <AdminDashboardGroup title={item.name} devices={item.devices}></AdminDashboardGroup>
-                    </li>
+                    </AccordionItem>
                     )
                 })}
-                </ul>
+                </Accordion>
             }
         </div>
     )
