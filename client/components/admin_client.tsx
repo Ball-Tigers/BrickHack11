@@ -3,7 +3,7 @@ import AdminFiles from "@/components/admin_dashboard_files";
 import AdminGroups from "@/components/admin_dashboard_groups";
 import AdminSettings from "@/components/admin_dashboard_settings";
 import Link from "next/link";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 
 interface Props {
     groupData: {name: string, devices: Array<{_id: string, orgId: string, groupName: string, name: string, macAddress: string}>}[],
