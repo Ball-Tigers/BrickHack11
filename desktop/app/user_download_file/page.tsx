@@ -1,16 +1,33 @@
 'use client'
-// import { useState } from "react"
+
+import { useState } from "react";
+
+declare global {
+    interface Window {
+        electronAPI: any;
+    }
+}
 
 export default function UserDownloadFile() {
-    // const [hasAuth, setHasAuth] = useState(true)
+    const [fileKey, setFileKey] = useState(null);
+
+    const downloadFile = () => {
+        console.log('downloading...');
+        window.electronAPI.downloadFile("~/Downloads/file.dmp", fileKey).then(success => {
+            console.log(success);
+        });
+    };
+
+    const onFileKeyChange = (e) => {
+        setFileKey(e.target.value);
+    }
 
     return (
         <div className="flex w-full h-full content-normal">
-            
             <div className='"h-screen flex items-center justify-center"'>
-                <h1 className="custom-header-strong">Download your file!</h1>
+                <h1 className="custom-header-strong">Download File by Key</h1>
                 <div className="flex flex-row justify-content space-x-5 items-align">
-                    <input className="text-xl border-2xl text-white bg-lightgray w-min-120" placeholder="Place link code here!"></input>
+                    <input onChange={onFileKeyChange} className="text-xl border-2xl text-white bg-lightgray w-min-120" placeholder="Insert file key here"/>
                     <button className="button-invite shadow-md ">Download</button>
                 </div>
             </div>
@@ -18,11 +35,8 @@ export default function UserDownloadFile() {
                 <img 
                     src='jafe_small.png'
                 />
-                <p className='text-7xl w-1 flex-wrap text-secondary flex justify-center text-center'>Download</p>
+                <button onClick={downloadFile} className='text-7xl w-1 flex-wrap text-secondary flex justify-center text-center'>Download</button>
             </div>
-            {/* <h1>User Download File</h1>
-            <p>If has access, button to download</p>
-            <p>If no access, big cry face emoji</p> */}
         </div>
     )
 }

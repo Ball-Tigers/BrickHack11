@@ -62,7 +62,6 @@ export default function UserUploadFile() {
                     <div onClick={chooseFile} className='p-16 gap-2 flex justify-center items-center aspect-square border-dashed border-4 border-accent rounded-4xl'>
                         <img
                             src='document.png'
-                            className=''
                         />
                     </div>
                     <p className='text-text'>Drag and drop a file, or click</p>
@@ -79,7 +78,7 @@ export default function UserUploadFile() {
                     <p className="text-secondary text-2xl">Choose Group to Share to:</p>
                     <select className="bg-secondary w-full p-4" onChange={onSelectGroup}>
                         {selectedOrg &&
-                            (organizations.find((org: any) => org.orgId === selectedOrg) as any)?.groups.map(group => <option>{group.name}</option>)
+                            (organizations.find((org: any) => org.orgId === selectedOrg) as any)?.groups.map((group, index) => <option key={index} value={group.name}>{group.name}</option>)
                         }
                     </select>
                 </div>

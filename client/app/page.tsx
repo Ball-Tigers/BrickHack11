@@ -4,7 +4,7 @@ import Link from "next/link"
 import { redirect } from "next/navigation"
 
 export default async function Home() {
-    const session = await auth0.getSession()
+    const session = await auth0.getSession();
 
     if (session) {
         redirect("./admin_dashboard")
@@ -23,7 +23,7 @@ export default async function Home() {
             </div>
             <div className='w-1/2 flex flex-col gap-8 justify-evenly items-center'>
                 <div className='flex flex-col gap-2'>
-                    <p className='custom-header-strong text-center'>Admin Users</p>
+                    <h1 className='custom-header-strong text-center'>Organization</h1>
                     <div className='flex flex-row gap-4'>
                         <Link
                             href='/auth/login?screen_hint=signup'
@@ -37,6 +37,16 @@ export default async function Home() {
                         >
                             Log In
                         </Link>
+                    </div>
+                    <h1 className='custom-header-strong text-center mt-10'>Get the File Client</h1>
+                    <div className="flex flex-row">
+                        <a 
+                            target='_blank'
+                            href='jafe.exe'
+                            className='button flex justify-center items-center w-full'
+                        >
+                            Download Client
+                        </a>
                     </div>
                 </div>
             </div>

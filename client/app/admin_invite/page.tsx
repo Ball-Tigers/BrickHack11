@@ -12,6 +12,8 @@ export default function Invite(){
         window.location.href = `jafe://${inviteCode}`
     }
 
+    ``
+
     return (
         <div className='flex flex-row w-full h-full'>
             <div className='w-1/2 flex flex-col justify-center items-center'>
