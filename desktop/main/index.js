@@ -87,7 +87,7 @@ ipcMain.handle('getOrganizations', async () => {
 
     return await (fetch('http://localhost:5000/api/organization', options).then(res => {
         return res.json()
-    }));;
+    }));
 });
 
 ipcMain.handle('uploadFile', async (_event, data) => {
@@ -123,4 +123,18 @@ ipcMain.handle('downloadFile', async (_event, data) => {
     }).error(_ => {
         return false;
     });
+});
+
+ipcMain.handle('acceptGroup', async (_event, data) => {
+    const { name, inviteCode } = data;
+
+    return await fetch('http://localhost:5000/api/organization/group/invite/accept', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            name: name,
+            inviteCode: inviteCode,
+            macAddress: getMAC()
+        }),
+    }).then(res => {return res.json()});
 });

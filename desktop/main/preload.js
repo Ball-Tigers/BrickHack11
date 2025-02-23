@@ -4,6 +4,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
     chooseFile: async () => await ipcRenderer.invoke('chooseFile'),
     getOrganizations: () => ipcRenderer.invoke('getOrganizations'),
     uploadFile: async (data) => await ipcRenderer.invoke('uploadFile', data),
+    acceptGroup: async (data) => await ipcRenderer.invoke('acceptGroup', data),
     downloadFile: async (data) => await ipcRenderer.invoke('downloadFile', data)
 });
 
