@@ -16,12 +16,12 @@ export default function AdminClient({groupData, whiteList}: Props) {
  
  
     return (
-        <div className="flex flex-col w-full h-full items-center py-20 g-4 ">
+        <div className="flex flex-col w-full h-full items-center py-20 g-4 overflow-y-scroll overflow-x-hidden">
             <div className="flex w-min-[800px] flex-row justify-start g-3 space-x-20">
                 <button className="button" onClick={() => setState(0)}>Groups</button>
                 <button className="button" onClick={() => setState(1)}>Files</button>
                 <button className="button" onClick={() => setState(2)}>Settings</button>
-                <Link href="/auth/logout"><button className="button">Logout!</button></Link>
+                <Link href="/auth/logout"><button className="button bg-primary">Logout!</button></Link>
             </div>
             
             {state == 0 && <AdminGroups groupData={groupData} ></AdminGroups>}

@@ -9,10 +9,15 @@ export default function AdminDashboardTable({userData}: Props) {
 
     return (
         <>
-            <ul>
+            <ul className="flex flex-col justify-between w-full text-white">
+                <li className="flex justify-between w-[98%] m-auto p-[1%] bg-[#444444]">
+                            <span>Name</span>
+                            <span>MAC Address</span>
+                            <span>Actions</span>
+                        </li>
                 {
                     userData.map((item) => {
-                        return <li className="user" key={item.name}>
+                        return <li className="flex justify-between w-[96%] m-auto" key={item.name}>
                             <span>{item.name}</span>
                             <span>{item.macAddress}</span>
                             <div>

@@ -18,29 +18,30 @@ export default function AdminSettings({ whiteList }: Props) {
                 <button className="button-invite" onClick={async () => {console.log(await modifyIPList(whiteList, value));}}>Add IP</button>
             </div>
             
+            <input placeholder="255.255.255.255" type="text" className="p-[2%] bg-white border-white border-sm rounded text-[26px] "onChange={(e) => updateValue(e.target.value)}></input>
+            <button className="mt-[5px] mr-auto ml-auto rounded-[5px] bg-primary w-[20%] cursor-pointer" onClick={async () => {console.log(await modifyIPList(whiteList, value));}}>Add IP</button>
             
 
             
-            <div className="flex flex-col w-full">
             
-                <h3 className="custom-header-strong">Whitelisted IPs: </h3>
-                <ul>
-                    {whiteList.map((item) => {
-                        return (
-                        <li key={item} className="flex flex-row justify-around">
-                            <span className="text-white text-2xl space-x-40 ">{item}</span>
-                            <button className="border-lg border-white rounded text-white"name={item} onClick={async (e) => {
-                                const name = (e.target as HTMLElement).getAttribute("name")
-                                
-                                if (name) {
-                                    await modifyIPList(whiteList, name, true)
-                                }
-                                }
-                            }>Remove</button>
-                        </li>)
-                    })}
-                </ul>
-            </div>
+            
+            <p className="text-primary m-[7px]">Whitelisted IPs: </p>
+            <ul className="bg-[#222222] border-[3px] border-black text-white p-[2%] rounded-[10px]">
+                {whiteList.map((item) => {
+                    return (
+                    <li key={item} className="border-md border-black ml-[2%] mr-[2%] flex justify-between">
+                        <span>{item}</span>
+                        <button name={item} className="text-[#ff0000] underline cursor-pointer" onClick={async (e) => {
+                            const name = (e.target as HTMLElement).getAttribute("name")
+                            
+                            if (name) {
+                                await modifyIPList(whiteList, name, true)
+                            }
+                            }
+                        }>Remove</button>
+                    </li>)
+                })}
+            </ul>
 
         </div>
     )
