@@ -29,7 +29,8 @@ export default function AdminDashboard() {
             <button onClick={() => setState(0)}>Groups</button>
             <button onClick={() => setState(1)}>Files (Not yet implemented)</button>
             <button onClick={() => setState(2)}>Settings</button>
-            <Link href="/auth/logout"><button>Logout!</button></Link>
+            <Link href="/auth/logout?groupName=heyheyhey"><button>Logout!</button></Link>
+            
             
 
             {state == 0 && <AdminGroups></AdminGroups>}
