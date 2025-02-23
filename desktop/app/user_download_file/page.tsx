@@ -23,7 +23,7 @@ export default function UserDownloadFile() {
 
     return (
         <div className="flex w-full h-full content-normal">
-            <div className='"h-screen flex items-center justify-center"'>
+            <div className='w-1/2 flex flex-col gap-4 items-center justify-center'>
                 <h1 className="custom-header-strong">Download File by Key</h1>
                 <div className="flex flex-row justify-content space-x-5 items-align">
                     <input onChange={onFileKeyChange} className="text-xl border-2xl text-white bg-lightgray w-min-120" placeholder="Insert file key here"/>
