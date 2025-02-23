@@ -19,8 +19,24 @@ export default function DesktopHome() {
                 </div>
             </div>
             <div className='w-1/2 flex flex-col gap-4 justify-center items-center'>
-                <Link href='/user_upload_file' className='button'>Upload</Link>
-                <Link href='/user_download_file' className='button'>Download</Link>
+                <Link 
+                    href='/user_upload_file' 
+                    className='button flex flex-row gap-4 justify-between items-center max-w-[50%] w-[300px]'
+                >
+                    <p>Upload</p>
+                    <img 
+                        src='upload.png'
+                    />
+                </Link>
+                <Link 
+                    href='/user_download_file' 
+                    className='button flex flex-row gap-4 justify-between items-center max-w-[50%] w-[300px]'
+                >
+                    <p>Download</p>
+                    <img 
+                        src='download.png'
+                    />
+                </Link>
             </div>
             <button 
                 className='absolute bottom-0 right-0 cursor-pointer mx-2 hidden'

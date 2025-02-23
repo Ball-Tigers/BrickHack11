@@ -23,7 +23,7 @@
 }
 
 .button {
-    font-size: xx-large;
+    font-size: 2rem;
     color: var(--color-text);
     cursor: pointer;
     border: solid var(--color-accent) 4px;
