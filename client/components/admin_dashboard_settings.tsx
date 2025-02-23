@@ -26,7 +26,13 @@ export default function AdminSettings({ whiteList }: Props) {
                     return (
                     <li key={item}>
                         <span>{item}</span>
-                        <button /*TODO: update whitelisted IPs on backend onclick*/>Remove</button>
+                        <button name={item} onClick={async (e) => {
+                            let name = (e.target as HTMLElement).getAttribute("name")
+                            if (name) {
+                                await modifyIPList(whiteList, name, true)
+                            }
+                            }
+                        }>Remove</button>
                     </li>)
                 })}
             </ul>

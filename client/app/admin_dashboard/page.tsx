@@ -129,7 +129,7 @@ export async function modifyIPList(whiteList: string[], IP: string, remove: bool
         whiteList.push(IP)
     }
     else {
-        whiteList.filter((item) => item != IP)
+        whiteList = whiteList.filter((item) => item != IP)
     }
     const data = {
         whitelistedIPs: whiteList
