@@ -13,6 +13,9 @@ export default function UserUploadFile() {
     const [organizations, setOrganizations] = useState([]);
     const [selectedOrg, setSelectedOrg] = useState(null);
     const [selectedGroup, setSelectedGroup] = useState(null);
+    const [fileUploaded, setFileUploaded] = useState(false)
+
+    const [knownFileKey, setKnownFileKey] = useState('')
     
     useEffect(() => {
         window.electronAPI.getOrganizations().then(res => {
@@ -39,6 +42,10 @@ export default function UserUploadFile() {
 
         alert(fileKey);
         console.log(fileKey);
+    
+        navigator.clipboard.writeText(fileKey)
+        setKnownFileKey(fileKey)
+        setFileUploaded(true)
     };
 
     const onSelectOrganization = (event) => {
@@ -55,7 +62,7 @@ export default function UserUploadFile() {
         setSelectedGroup(event.target.value);
     }
 
-    return (
+    return !fileUploaded ? (
         <div className='flex flex-row w-full h-full'>
             <div className='w-1/2 flex flex-col items-center justify-center gap-8'>
                 <div className="flex flex-col justify-center items-center min-w-[20%] w-[200px] max-w-[40%] ">
@@ -93,5 +100,17 @@ export default function UserUploadFile() {
                 <p className='text-7xl w-1 flex-wrap text-secondary flex justify-center text-center'>Upload</p>
             </div>
         </div>
-    );
+    ) : (
+        <div className="flex flex-col justify-center items-center gap-4">
+            <p className='custom-header-strong'>File Uploaded :)</p>
+            <p className='text-text'>Copy and share the key below!</p>
+            <p className='bg-primary px-4 py-2'>{knownFileKey}</p>
+            <button 
+                onClick={() => {setFileUploaded(false)}}
+                className="button"    
+            >
+                Upload Another
+            </button>
+        </div>
+    )
 }
