@@ -10,17 +10,19 @@ export default function AdminSettings({ whiteList }: Props) {
     const [value, updateValue] = useState("")
   
     return (
-        <div className="flex flex-col justify-content align-content py-10">
+        <div className="flex flex-row justify-content align-content py-10 space-x-20 space-y-30">
             
             
+            <div className="flex flex-col space-y-2 h-full justify-content items-align">
+                <input placeholder="255.255.255.255" type="text" className="bg-white border-white border-sm rounded text-[36px] "onChange={(e) => updateValue(e.target.value)}></input>
+                <button className="button-invite" onClick={async () => {console.log(await modifyIPList(whiteList, value));}}>Add IP</button>
+            </div>
             
-            <input placeholder="255.255.255.255" type="text" className="bg-white border-white border-sm rounded text-[36px] "onChange={(e) => updateValue(e.target.value)}></input>
-            <button onClick={async () => {console.log(await modifyIPList(whiteList, value));}}>Add IP</button>
             
 
             
             
-            <p>Whitelisted IPs: </p>
+            <h3 className="custom-header-strong">Whitelisted IPs: </h3>
             <ul>
                 {whiteList.map((item) => {
                     return (
