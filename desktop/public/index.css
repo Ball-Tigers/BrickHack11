@@ -3,9 +3,13 @@
 @layer utilities {
     .home-clip-left {
         clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%);
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
     }
     .home-clip-right {
         clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+        border-bottom-right-radius: 1rem;
+        border-top-right-radius: 1rem;
     }
 }
 

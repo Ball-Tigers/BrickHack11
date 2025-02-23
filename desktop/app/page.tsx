@@ -12,8 +12,8 @@ export default function DesktopHome() {
             <div className='w-1/2 bg-accent home-clip-left'>
                 <div className='flex justify-center items-center h-full'>
                     <img
-                        src="/jafo.png"
-                        alt="Jafo Logo"
+                        src="/jafe.png"
+                        alt="Jafe Logo"
                         className='300px max-w-[60%]'
                     />
                 </div>
