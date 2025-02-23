@@ -15,6 +15,8 @@ export default function AdminSettings() {
 
             <input type="text" onChange={(e) => updateValue(e.target.value)}></input>
             <button onClick={() => {IPs.push(value); updateValue(""); console.log(IPs.toString())}}>Add IP</button>
+
+            
             
             <p>Whitelisted IPs: </p>
             <ul>

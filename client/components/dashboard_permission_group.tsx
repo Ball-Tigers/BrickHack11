@@ -5,10 +5,10 @@ import { useState } from "react";
 
 interface Props {
     title: string
-    
+    devices: Array<{_id: string, orgId: string, groupName: string, name: string, macAddress: string}>
 }
 
-export default function AdminDashboardGroup({title}: Props) {
+export default function AdminDashboardGroup({title, devices}: Props) {
     const [toggle, setToggle] = useState(false);
 
     function click() {
@@ -24,7 +24,7 @@ export default function AdminDashboardGroup({title}: Props) {
                 }
                 {
                     toggle && (<div className = "permission-group">
-                        <AdminDashboardTable userData={FetchDevices()}>
+                        <AdminDashboardTable userData={devices}>
 
                         </AdminDashboardTable>
                     </div>)
@@ -35,8 +35,5 @@ export default function AdminDashboardGroup({title}: Props) {
     
 }
 
-function FetchDevices() {
-    //TODO: get jack shit
-    return Array({id:"Jack", mac: "1812470124"}, {id:"Owen", mac: "1812470124"}, {id:"Dante", mac: "1812470124"})
-}
+
 
