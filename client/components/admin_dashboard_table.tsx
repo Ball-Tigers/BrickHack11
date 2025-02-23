@@ -1,4 +1,3 @@
-import AdminGroupActions from "./permission_group_actions"
 
 interface Props {
     userData: Array<{_id: string, orgId: string, groupName: string, name: string, macAddress: string}>

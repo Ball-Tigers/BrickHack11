@@ -1,6 +1,7 @@
 'use client';
 import AdminDashboardTable from "./admin_dashboard_table";
 import { useState } from "react";
+import { createInvite } from "@/app/admin_dashboard/page";
 
 
 interface Props {
@@ -20,7 +21,7 @@ export default function AdminDashboardGroup({title, devices}: Props) {
             <div onClick={click}>
                 <h3>{title}</h3>
                 {
-                    toggle && <button>Invite</button>
+                    toggle && <button onClick={async () => {await navigator.clipboard.writeText((await createInvite(title)).inviteCode)}}>Invite</button>
                 }
                 {
                     toggle && (<div className = "permission-group">
