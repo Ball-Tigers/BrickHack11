@@ -6,7 +6,7 @@ async function createGroup(orgId, name) {
         name: name
     });
     if(group !== null) {
-        return { code: 409, message: "Group already exists with that name" };
+        return { code: 409, message: 'Group already exists with that name' };
     }
 
     await database().collection('groups').insertOne({
@@ -14,7 +14,7 @@ async function createGroup(orgId, name) {
         name: name
     });
 
-    return { code: 200, message: "Successfully created group" };
+    return { code: 200, message: 'Successfully created group' };
 }
 
 async function getGroups(orgId) {
