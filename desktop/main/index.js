@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow, ipcMain, dialog } from "electron";
 import serve from "electron-serve";
 import path from "path";
 
@@ -35,7 +35,7 @@ const createWindow = () => {
         });
     } else {
         win.loadURL("http://localhost:3000");
-            // win.webContents.openDevTools();
+            win.webContents.openDevTools();
             win.webContents.on("did-fail-load", (e, code, desc) => {
             win.webContents.reloadIgnoringCache();
         });
@@ -74,4 +74,10 @@ app.on("window-all-closed", () => {
     if(process.platform !== "darwin"){
         app.quit();
     }
+});
+
+ipcMain.handle('chooseFile', async (event) => {
+    return await dialog.showOpenDialog(BrowserWindow.fromWebContents(event.sender), {
+        properties: ['openFile']
+    });
 });

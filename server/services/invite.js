@@ -51,7 +51,20 @@ async function acceptInvite(inviteCode, name, macAddress) {
     return { code: 200, message: 'Successfully created device' };
 }
 
+async function getInvite(inviteCode) {
+    const invite = await database().collection('invites').findOne({
+        inviteCode: inviteCode
+    });
+
+    if(invite === null) {
+        return { code: 404, message: 'Invalid invite code specified' };
+    }
+
+    return { code: 200, groupName: invite.groupName };
+}
+
 module.exports = {
     createInvite: createInvite,
-    acceptInvite: acceptInvite
+    acceptInvite: acceptInvite,
+    getInvite: getInvite
 }

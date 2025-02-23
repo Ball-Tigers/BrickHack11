@@ -1,4 +1,6 @@
 const { database } = require('../db/mongo');
+const { getGroups } = require('../services/group');
+const { getDevices } = require('../services/device');
 
 async function upsertOrganization(orgId) {
     await database().collection('organizations').updateOne(
@@ -37,7 +39,35 @@ async function updateWhitelistedIPs(orgId, whitelistedIPs) {
     return { code: 200, message: 'Updated whitelisted IPs' };
 }
 
+async function getOrganizations(ipAddress, macAddress) {
+    const cursor = await database().collection('organizations').find({
+        whitelistedIPs: ipAddress
+    });
+    
+    let organizations = [];
+    for await(const organization of cursor) {
+        let groups = [];
+        const orgGroups = await getGroups(organization._id);
+        for(const group of orgGroups) {
+            const devices = await getDevices(organization._id, group.name);
+            for(const device of devices) {
+                if(device.macAddress === macAddress) {
+                    groups.push(group);
+                }
+            }
+        }
+
+        organizations.push({
+            orgId: organization._id,
+            groups: groups
+        });
+    }
+
+    return organizations;
+}
+
 module.exports = {
     upsertOrganization: upsertOrganization,
-    updateWhitelistedIPs: updateWhitelistedIPs
+    updateWhitelistedIPs: updateWhitelistedIPs,
+    getOrganizations: getOrganizations
 };
