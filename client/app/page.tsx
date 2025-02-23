@@ -1,7 +1,7 @@
+'use server'
 import { auth0 } from "@/lib/auth0"
 import Link from "next/link"
 import { redirect } from "next/navigation"
-import "../public/index.css"
 
 export default async function Home() {
     const session = await auth0.getSession()
@@ -9,8 +9,6 @@ export default async function Home() {
     if (session) {
         redirect("./admin_dashboard")
     }
-
-    const inviteKey = "mfibiuyfgweoiuhfuidybiuywbieryf"
 
     return (
         <div className='flex flex-row w-full h-full'>
@@ -39,23 +37,6 @@ export default async function Home() {
                         >
                             Log In
                         </Link>
-                    </div>
-                </div>
-                <div className="flex flex-row">
-                    <div className='flex flex-col gap-2'>
-                        <p className='custom-header-strong text-center'>Group Invites</p>
-                        <div className='flex flex-row gap-2'>
-                            <input 
-                                type='text'
-                                className='text-2xl bg-secondary px-4 py-1 rounded-2xl w-[300px] max-w-[60%] min-w[30%]' 
-                            />
-                            <Link 
-                                href={"/admin_invite?groupName=" + inviteKey}
-                                className='button flex justify-center items-center'
-                            >
-                                Submit
-                            </Link>
-                        </div>
                     </div>
                 </div>
             </div>
